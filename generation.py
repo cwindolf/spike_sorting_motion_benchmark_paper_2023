@@ -146,14 +146,13 @@ def generate_drift_recordings(base_folder=None, probename='Neuronexus-32',
     if drift_mode == 'static':
         drift_dict["slow_drift_velocity"] = 0 # um/min
         drift_dicts = [drift_dict]
-    elif drift_mode in 'rigid':
+    elif drift_mode == 'rigid':
         drift_dict["drift_mode_speed"] = "slow"
         drift_dict["slow_drift_waveform"] = "triangluar"
         drift_dict["slow_drift_velocity"] = 30 # um/min
         drift_dict["slow_drift_amplitude"] = 30
         drift_dict["drift_mode_probe"] = 'rigid'
         drift_dicts = [drift_dict]
-    
     elif drift_mode == 'non-rigid':
         drift_dict["drift_mode_speed"] = "slow"
         drift_dict["slow_drift_waveform"] = "triangluar"
@@ -163,7 +162,6 @@ def generate_drift_recordings(base_folder=None, probename='Neuronexus-32',
         drift_dict["non_rigid_gradient_mode"] = 'linear'
         drift_dict["non_rigid_linear_min_factor"] = 0.4
         drift_dicts = [drift_dict]
-
     elif drift_mode == 'bumps':
         # inject some random dumps up/down ward every 0.5 to 1.5s
         # and have a gradient from 0.5 to 1 on y axis
