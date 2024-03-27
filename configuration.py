@@ -1,6 +1,7 @@
 from pathlib import Path
 import getpass
 import json
+import os
 
 import numpy as np
 import matplotlib.pylab as plt
@@ -23,6 +24,14 @@ if getpass.getuser() == 'samuel.garcia':
     si.Kilosort2_5Sorter.set_kilosort2_5_path('/home/samuel.garcia/Documents/SpikeInterface/code_sorters/Kilosort2.5/')
     # si.Kilosort3Sorter.set_kilosort3_path('/home/samuel.garcia/Documents/SpikeInterface/code_sorters/Kilosort3/')
     tmp_folder = base_folder / 'tmp'
+    cell_folder = mr.get_default_cell_models_folder()
+elif getpass.getuser() == 'cwindolf':
+    base_folder = Path('/home/cwindolf/proj/measims')
+    base_folder.mkdir(exist_ok=True)
+    # cell_folder = Path('/home/cwindolf/proj/mearec_cells')
+    # cell_folder.mkdir(exist_ok=True)
+    cell_folder = mr.get_default_cell_models_folder()
+    tmp_folder = Path(os.environ['TMPDIR'])
 else:
     # pierre working
     base_folder = Path('/media/cure/Secondary/pierre/softwares/spikeinterface_drift_benchmarks/pierre')
@@ -30,6 +39,7 @@ else:
     si.Kilosort2_5Sorter.set_kilosort2_5_path('/media/cure/Secondary/pierre/softwares/Kilosort-2.5/')
     # si.Kilosort3Sorter.set_kilosort3_path('/media/cure/Secondary/pierre/softwares/Kilosort-3.0/')
     tmp_folder = None
+    cell_folder = mr.get_default_cell_models_folder()
 
 
 
