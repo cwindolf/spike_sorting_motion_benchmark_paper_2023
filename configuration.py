@@ -28,6 +28,8 @@ if getpass.getuser() == 'samuel.garcia':
 elif getpass.getuser() == 'cwindolf':
     base_folder = Path('/home/cwindolf/proj/measims')
     base_folder.mkdir(exist_ok=True)
+    sparsity_folder = Path('/home/cwindolf/proj/measimdense')
+    sparsity_folder.mkdir(exist_ok=True)
     # cell_folder = Path('/home/cwindolf/proj/mearec_cells')
     # cell_folder.mkdir(exist_ok=True)
     cell_folder = mr.get_default_cell_models_folder()

@@ -20,9 +20,8 @@ def generate_drift_recordings(base_folder=None, probename='Neuronexus-32',
     assert cells_rate  in ['homogeneous', 'modulated']
     assert drift_mode in ['static', 'rigid', 'non-rigid', 'bumps']
 
-    cell_folder = mr.get_default_cell_models_folder()
+    # cell_folder = mr.get_default_cell_models_folder()
     template_params = mr.get_default_templates_params()
-
 
     templates_ids =  None
 
@@ -246,19 +245,37 @@ def generate_drift_recordings(base_folder=None, probename='Neuronexus-32',
 
 
 ## exhaustive generation of all cases
-for cells_position in cells_positions:
-    for cells_rate in cells_rates:
-        # for drift_mode in ['static']:
-        for drift_mode in ['static'] + drift_modes:
-        # for drift_mode in drift_modes:
-            generate_drift_recordings(base_folder=base_folder,
-                                      probename=probename, 
-                                      drift_mode=drift_mode,
-                                      cells_position=cells_position,
-                                      cells_rate=cells_rate,
-                                      erase=True,
-                                      n_jobs=-1)
+# for cells_position in cells_positions:
+#     for cells_rate in cells_rates:
+#         # for drift_mode in ['static']:
+#         for drift_mode in ['static'] + drift_modes:
+#         # for drift_mode in drift_modes:
+#             generate_drift_recordings(base_folder=base_folder,
+#                                       probename=probename, 
+#                                       drift_mode=drift_mode,
+#                                       cells_position=cells_position,
+#                                       cells_rate=cells_rate,
+#                                       erase=True,
+#                                       n_jobs=-1)
 
+# generate a very dense recording on a different layout for subsampling tests
+# this probe can be added to MEAutility with the yaml:
+# electrode_name: NPx-Like-Dense
+# description: "Neuropixels-like probe for channel selection tests"
+# sortlist: null
+# pitch: [16.0, 16.0]
+# dim: [64, 4]
+# size: 6.0
+# plane: yz
+# shape: square
+# type: mea
+generate_drift_recordings(base_folder=sparsity_folder,
+                          probename="NPx-Like-Dense", 
+                          drift_mode="rigid",
+                          cells_position="uniform",
+                          cells_rate="homogeneous",
+                          erase=True,
+                          n_jobs=-1)
 
 # debug 
 
